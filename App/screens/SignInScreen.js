@@ -179,7 +179,7 @@ const SignInScreen = ({ navigation }) => {
                         styles.text_footer,
                         {
                             color: colors.text,
-                            marginTop: 35,
+                            marginTop: 20,
                         },
                     ]}
                 >
@@ -261,29 +261,7 @@ const SignInScreen = ({ navigation }) => {
                                 },
                             ]}
                         >
-                            Đăng kí
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("SplashScreen")}
-                        style={[
-                            styles.signIn,
-                            {
-                                borderColor: "#009387",
-                                borderWidth: 1,
-                                marginTop: 15,
-                            },
-                        ]}
-                    >
-                        <Text
-                            style={[
-                                styles.textSign,
-                                {
-                                    color: "#009387",
-                                },
-                            ]}
-                        >
-                            Quay lại
+                            Đăng kí ngay
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -303,7 +281,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         paddingHorizontal: 20,
-        paddingBottom: 50,
+        paddingBottom: 40,
     },
     footer: {
         flex: 3,
@@ -348,7 +326,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        marginTop: 50,
+        marginTop: 20,
     },
     signIn: {
         width: "100%",

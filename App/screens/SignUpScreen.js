@@ -73,15 +73,43 @@ const SignInScreen = ({ navigation }) => {
         <View style={styles.container}>
             <StatusBar backgroundColor="#009387" barStyle="light-content" />
             <View style={styles.header}>
-                <Text style={styles.text_header}>Register Now!</Text>
+                <Text style={styles.text_header}>Đăng ký ngay!</Text>
             </View>
             <Animatable.View animation="fadeInUpBig" style={styles.footer}>
                 <ScrollView>
-                    <Text style={styles.text_footer}>Username</Text>
+                    <Text style={styles.text_footer}>Họ và tên</Text>
                     <View style={styles.action}>
                         <FontAwesome name="user-o" color="#05375a" size={20} />
                         <TextInput
-                            placeholder="Your Username"
+                            placeholder="Họ và tên"
+                            style={styles.textInput}
+                            autoCapitalize="none"
+                            onChangeText={(val) => textInputChange(val)}
+                        />
+                        {data.check_textInputChange ? (
+                            <Animatable.View animation="bounceIn">
+                                <Feather
+                                    name="check-circle"
+                                    color="green"
+                                    size={20}
+                                />
+                            </Animatable.View>
+                        ) : null}
+                    </View>
+                    <Text
+                        style={[
+                            styles.text_footer,
+                            {
+                                marginTop: 20,
+                            },
+                        ]}
+                    >
+                        Tài khoản
+                    </Text>
+                    <View style={styles.action}>
+                        <FontAwesome name="user-o" color="#05375a" size={20} />
+                        <TextInput
+                            placeholder="Tài khoản"
                             style={styles.textInput}
                             autoCapitalize="none"
                             onChangeText={(val) => textInputChange(val)}
@@ -101,16 +129,16 @@ const SignInScreen = ({ navigation }) => {
                         style={[
                             styles.text_footer,
                             {
-                                marginTop: 35,
+                                marginTop: 20,
                             },
                         ]}
                     >
-                        Password
+                        Mật khẩu
                     </Text>
                     <View style={styles.action}>
                         <Feather name="lock" color="#05375a" size={20} />
                         <TextInput
-                            placeholder="Your Password"
+                            placeholder="Mật khẩu"
                             secureTextEntry={
                                 data.secureTextEntry ? true : false
                             }
@@ -135,16 +163,16 @@ const SignInScreen = ({ navigation }) => {
                         style={[
                             styles.text_footer,
                             {
-                                marginTop: 35,
+                                marginTop: 20,
                             },
                         ]}
                     >
-                        Confirm Password
+                        Nhập lại mật khẩu
                     </Text>
                     <View style={styles.action}>
                         <Feather name="lock" color="#05375a" size={20} />
                         <TextInput
-                            placeholder="Confirm Your Password"
+                            placeholder="Nhập lại mật khẩu"
                             secureTextEntry={
                                 data.confirm_secureTextEntry ? true : false
                             }
@@ -168,41 +196,19 @@ const SignInScreen = ({ navigation }) => {
                             )}
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.textPrivate}>
-                        <Text style={styles.color_textPrivate}>
-                            By signing up you agree to our
-                        </Text>
-                        <Text
-                            style={[
-                                styles.color_textPrivate,
-                                { fontWeight: "bold" },
-                            ]}
-                        >
-                            {" "}
-                            Terms of service
-                        </Text>
-                        <Text style={styles.color_textPrivate}> and</Text>
-                        <Text
-                            style={[
-                                styles.color_textPrivate,
-                                { fontWeight: "bold" },
-                            ]}
-                        >
-                            {" "}
-                            Privacy policy
-                        </Text>
-                    </View>
                     <View style={styles.button}>
                         <TouchableOpacity
                             style={styles.signIn}
-                            onPress={() => {}}
+                            onPress={() => {
+                                loginHandle(data.username, data.password);
+                            }}
                             style={[
-                              styles.signIn,
-                              {
-                                  backgroundColor: "#009387",
-                                  marginTop: 15,
-                              },
-                          ]}
+                                styles.signIn,
+                                {
+                                    backgroundColor: "#009387",
+                                    marginTop: 20,
+                                },
+                            ]}
                         >
                             <Text
                                 style={[
@@ -212,7 +218,7 @@ const SignInScreen = ({ navigation }) => {
                                     },
                                 ]}
                             >
-                                Sign Up
+                                Đăng ký
                             </Text>
                         </TouchableOpacity>
 
@@ -235,7 +241,7 @@ const SignInScreen = ({ navigation }) => {
                                     },
                                 ]}
                             >
-                                Sign In
+                                Đăng nhập ngay
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -256,7 +262,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         paddingHorizontal: 20,
-        paddingBottom: 50,
+        paddingBottom: 40,
     },
     footer: {
         flex: Platform.OS === "ios" ? 3 : 5,
@@ -290,7 +296,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        marginTop: 50,
+        marginTop: 20,
     },
     signIn: {
         width: "100%",
@@ -302,13 +308,5 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: "bold",
-    },
-    textPrivate: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        marginTop: 20,
-    },
-    color_textPrivate: {
-        color: "grey",
     },
 });
